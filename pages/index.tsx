@@ -1,6 +1,5 @@
 import {  FormEvent, useContext, useState } from "react";
 import { AuthContext } from "../contexts/AuthContext";
-//import { AuthContext } from "../contexts/AuthContext";
 import styles from "../styles/Home.module.css";
 
 export default function Home() {
