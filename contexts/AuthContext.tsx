@@ -1,7 +1,7 @@
 import { createContext, ReactNode, useEffect, useState } from "react"
 import Router from "next/router"
-import { api } from "../services/api";
 import { setCookie, parseCookies, destroyCookie } from 'nookies';
+import { api } from "../services/apiClient";
 
 
 type User = {
@@ -34,9 +34,6 @@ export function signOut() {
 
     Router.push('/')
 }
-
-
-
 
 export function AuthProvider ({children}: AuthProviderProps ) {
    const [user, setUser] = useState<User>();
