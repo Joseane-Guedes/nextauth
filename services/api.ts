@@ -1,6 +1,7 @@
 import axios, { AxiosError } from 'axios';
 import { parseCookies, setCookie, destroyCookie } from 'nookies';
 import { signOut } from '../contexts/AuthContext';
+import { AuthTokenError } from './errors/AuthTokenError';
 
 
 
@@ -30,8 +31,6 @@ api.interceptors.response.use(response => {
         
         if(!isRefreshing) { 
             isRefreshing = true
-
-            console.log('refresh')
             
             api.post('/refresh', {
             refreshToken,
@@ -79,7 +78,9 @@ api.interceptors.response.use(response => {
       } else {
         if (process.browser) {
           signOut()
-        } 
+        } else {
+          return Promise.reject(new AuthTokenError());
+        }
       }
     }
 
